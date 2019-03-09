@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Piclist</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+    <div id="loginuser">
+    <%= current_user.email %>としてログイン中
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <% if current_user.email != 'guest@guest' %>
+    <%= link_to 'アカウント編集', edit_user_registration_path %>
+    </div>
+    <% end %>
+  <% else %>
+    <%= link_to "新規登録", new_user_registration_path %> |
+    <%= link_to "ログイン", new_user_session_path %>
+  <% end %>
+    <!--<p class="notice"><%= notice %></p>-->
+    <p id="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

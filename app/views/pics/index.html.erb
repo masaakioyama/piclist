@@ -1,0 +1,87 @@
+
+<h1>一覧</h1>
+<%= search_form_for @search do |f| %>
+  <div class="form-group">
+    題名
+    <%= f.text_field :title_or_englishtitle_cont, class: "form-control" %>
+    完成年月日
+    <%= f.date_select :made_gteq, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %> 〜
+    <%= f.date_select :made_lteq, {include_blank: true, use_month_numbers: true, date_separator: ' / '}, class: "form-control" %>
+    <%= f.submit "Search" %>
+    <%= link_to '検索条件のクリア', request.path %>
+
+  </div>
+
+<% end %>
+
+<table id="mytable">
+  <thead>
+    <tr>
+      <th>Img</th>
+      <th><%= sort_link(@search, :title, "題名") %></th>
+      <th><%= sort_link(@search, :englishtitle, "Englishtitle") %></th>
+      <th><%= sort_link(@search, :made, "完成年月日") %></th>
+      <th><%= sort_link(@search, :technique, "手法") %></th>
+      <th><%= sort_link(@search, :gosu, "号数") %></th>
+      <th>Width</th>
+      <th>Height</th>
+      <th><%= sort_link(@search, :award, "受賞") %></th>
+      <th><%= sort_link(@search, :awardday, "受賞年月日") %></th>
+      <% if current_user.email != 'guest@guest' %>
+      <th>販売状況</th>
+      <th>販売日</th>
+      <th>販売価格</th>
+      <th>販売先</th>
+      <th>販売先郵便番号</th>
+      <th>販売先住所</th>
+      <th>販売先電話番号</th>
+      <th>販売先email</th>
+      <th>備考</th>
+      <% end %>
+      <!--<th colspan="3"></th>-->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pics.each do |pic| %>
+      <tr>
+        <!--<td><%= pic.img %></td>-->
+        <td><% if pic.img.present? %>
+          <%= link_to image_tag(pic.img.url,{ :height => "40"}), pic %>
+        <% end %></td>
+        
+        
+        <td><% if pic.title.present? %>
+          <%= link_to pic.title , pic %></td>
+        <% end %></td>
+        <td><% if pic.englishtitle.present? %>
+          <%= link_to pic.englishtitle , pic %>
+        <% end %></td>
+        <td><%= pic.made %></td>
+        <td><%= pic.technique %></td>
+        <td><%= pic.gosu %></td>
+        <td><%= pic.width %></td>
+        <td><%= pic.height %></td>
+        <td><%= pic.award %></td>
+        <td><%= pic.awardday %></td>
+        <% if current_user.email != 'guest@guest' %>
+        <td><%= pic.sellstatus %></td>
+        <td><%= pic.solidly %></td>
+        <td><%= pic.soldprice %></td>
+        <td><%= pic.buyer %></td>
+        <td><%= pic.buyerzip %></td>
+        <td><%= pic.buyeraddress %></td>
+        <td><%= pic.buyerphone %></td>
+        <td><%= pic.buyeremail %></td>
+        <td><%= pic.remark %></td>
+        <% end %>
+        <!--</td><%= link_to 'Show', pic %></td>-->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p>
+<%= paginate @pics %>
+<%= link_to '新規登録', new_pic_path %>
+</p>

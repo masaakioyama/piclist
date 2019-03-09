@@ -1,0 +1,86 @@
+<h1>詳細</h1>
+<p>
+  <% if @pic.img.present? %>
+  <%= image_tag @pic.img.url, :height => "400" %>
+  <% end %>
+</p>
+
+<p>
+  <strong>題名:</strong>
+  <%= @pic.title %> |
+  <strong>Englishtitle:</strong>
+  <%= @pic.englishtitle %>
+</p>
+
+<p>
+  <strong>完成年月日:</strong>
+  <%= @pic.made %>
+</p>
+
+<p>
+  <strong>手法:</strong>
+  <%= @pic.technique %>
+</p>
+
+<p>
+  <strong>号数:</strong>
+  <%= @pic.gosu %> |
+  <strong>幅:</strong>
+  <%= @pic.width %> |
+  <strong>高さ:</strong>
+  <%= @pic.height %>
+</p>
+
+<p>
+  <strong>受賞:</strong>
+  <%= @pic.award %> |
+  <strong>受賞年月日:</strong>
+  <%= @pic.awardday %>
+</p>
+<% if current_user.email != 'guest@guest' %>
+<p>
+  <strong>販売状況:</strong>
+  <%= @pic.sellstatus %> |
+  <strong>販売年月日:</strong>
+  <%= @pic.solidly %>
+</p>
+
+<p>
+  <strong>販売価格:</strong>
+  <%= @pic.soldprice %>
+</p>
+
+<p>
+  <strong>販売先:</strong>
+  <%= @pic.buyer %>
+</p>
+
+<p>
+  <strong>販売先郵便番号:</strong>
+  <%= @pic.buyerzip %>
+</p>
+
+<p>
+  <strong>販売先住所:</strong>
+  <%= @pic.buyeraddress %>
+</p>
+
+<p>
+  <strong>販売先電話番号:</strong>
+  <%= @pic.buyerphone %>
+</p>
+
+<p>
+  <strong>販売先email:</strong>
+  <%= @pic.buyeremail %>
+</p>
+<% end %>
+<p>
+  <strong>備考:</strong>
+  <%= @pic.remark %>
+</p>
+<p>
+<%= link_to '編集', edit_pic_path(@pic) %> |
+<%= link_to '一覧', pics_path %> |
+<%= link_to '削除', @pic, method: :delete, data: { confirm: 'Are you sure?' } %>
+</p>

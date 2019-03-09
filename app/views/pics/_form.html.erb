@@ -1,0 +1,88 @@
+<%= form_with(model: pic, local: true) do |form| %>
+  <% if pic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pic.errors.count, "error") %> prohibited this pic from being saved:</h2>
+
+      <ul>
+      <% pic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <% if pic.img.present? %>
+    <p>
+    <%= image_tag pic.img.url, :height => "400" %>
+    </p>
+    <% end %>
+    <table>
+ <tr>
+    <td><%= form.label "image" %><%= form.text_field :img %> </td> 
+    <td><%= form.file_field :img %></td>
+ </tr>
+ <tr>
+    <td><%= form.label "題名" %>
+    <%= form.text_field :title %> </td> 
+    <td><%= form.label :englishtitle %>
+    <%= form.text_field :englishtitle %></td>
+ </tr>
+ <tr>
+ <td> <%= form.label "完成年月日" %>
+  <%= form.date_field :made %></td> 
+   <td><%= form.label "手法" %>
+   <!--<%= form.text_field :technique %>-->
+   <%= form.select :technique , [["油彩","油彩"],["水彩","水彩"],["鉛筆","鉛筆"],["チョーク","チョーク"],["パステル","パステル"],["アクリル","アクリル"],["その他","その他"]] %>
+ </td>
+ </tr>
+ <tr>
+    <td><%= form.label "号数" %>
+    <%= form.text_field :gosu %></td>
+    <td><%= form.label "幅" %>
+    <%= form.text_field :width %> | 
+    <%= form.label "高さ" %>
+    <%= form.text_field :height %></td>
+ </tr>
+ <tr>
+    <td><%= form.label "受賞" %>
+    <%= form.text_field :award %> </td>
+     <td><%= form.label "受賞年月日" %>
+    <%= form.date_field :awardday %></td>
+ </tr>
+ <tr>
+    <td><%= form.label "販売状況" %>
+    <%= form.select :sellstatus , [["未","未"],["非売","非売"],["販売済","販売済"],["交渉中","交渉中"],["進呈","進呈"],["廃棄","廃棄"],["その他","その他"]] %>
+    <!--<%= form.text_field :sellstatus %></td>-->
+    <td><%= form.label "販売年月日" %>
+    <%= form.date_field :solidly %></td>
+ </tr>
+ <tr>  
+    <td><%= form.label "販売価格" %>
+    <%= form.number_field :soldprice %></td>
+ </tr>
+ <tr>
+   <td>
+  <%= form.label "時販売先" %>
+  <%= form.text_field :buyer %></td>
+ </tr>
+ <tr>
+  <td><%= form.label "販売先郵便番号" %>
+  <%= form.text_field :buyerzip %> </td>
+  <td><%= form.label "販売先住所" %>
+  <%= form.text_area :buyeraddress %></td>
+ </tr>
+ <tr>
+  <td><%= form.label "販売先電話番号" %>
+  <%= form.text_field :buyerphone %></td>
+  <td><%= form.label "販売先email" %>
+  <%= form.text_field :buyeremail %></td>
+ </tr>
+ <tr>
+ <td colspan="2"> <%= form.label "備考" %>
+  <%= form.text_area :remark %></td>
+ </tr>
+  </table> 
+<p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  img: MyString
+  title: MyString
+  englishtitle: MyString
+  made: 2019-03-04
+  technique: MyString
+  gosu: 1.5
+  width: 1.5
+  height: 1.5
+  award: MyString
+  awardday: 2019-03-04
+  sellstatus: MyString
+  solidly: 2019-03-04
+  soldprice: 1
+  buyer: MyString
+  buyerzip: MyString
+  buyeraddress: MyText
+  buyerphone: MyString
+  buyeremail: MyString
+  remark: MyText
+
+two:
+  img: MyString
+  title: MyString
+  englishtitle: MyString
+  made: 2019-03-04
+  technique: MyString
+  gosu: 1.5
+  width: 1.5
+  height: 1.5
+  award: MyString
+  awardday: 2019-03-04
+  sellstatus: MyString
+  solidly: 2019-03-04
+  soldprice: 1
+  buyer: MyString
+  buyerzip: MyString
+  buyeraddress: MyText
+  buyerphone: MyString
+  buyeremail: MyString
+  remark: MyText
